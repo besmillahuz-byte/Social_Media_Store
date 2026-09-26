@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Social Media Star</title>
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:Tahoma,Arial,sans-serif;background:#f5f7fb;color:#172033}
+header{background:linear-gradient(135deg,#6c2cff,#ff2d75);color:white;text-align:center;padding:28px 16px}
+header h1{margin:0 0 8px;font-size:30px}header p{margin:0;line-height:1.9}
+.container{max-width:900px;margin:auto;padding:18px}
+.card{background:white;border-radius:16px;padding:18px;margin:14px 0;box-shadow:0 4px 18px #0000000d}
+h2{margin-top:0;color:#5b25d8}h3{margin-bottom:10px}
+select,input,button,textarea{width:100%;padding:12px;border:1px solid #d8ddea;border-radius:10px;font-size:15px;margin:6px 0}
+button{border:0;background:#6c2cff;color:white;font-weight:bold;cursor:pointer}
+button:hover{opacity:.92}.price{font-size:22px;font-weight:bold;color:#0b9b62;margin:12px 0}
+.info{background:#f1edff;padding:12px;border-radius:10px;line-height:1.9}
+.payment{background:#fff7e6;padding:14px;border-radius:10px;line-height:2}
+.small{font-size:12px;color:#667085}
+.hidden{display:none}.service-title{font-weight:bold;margin-top:15px}
+ul{line-height:2.1;padding-right:22px}
+</style>
+</head>
+<body>
+
+<header>
+<h1>⭐ Social Media Star</h1>
+<p>خدمات حرفه‌ای شبکه‌های اجتماعی؛ فالوور، لایک، بازدید، کمنت، سبسکرایبر و واچ‌تایم</p>
+</header>
+
+<div class="container">
+
+<div class="card">
+<h2>🛒 ثبت سفارش</h2>
+<label>شبکه اجتماعی</label>
+<select id="platform" onchange="loadServices()">
+<option value="">انتخاب کنید</option>
+<option>Instagram</option>
+<option>TikTok</option>
+<option>Facebook</option>
+<option>YouTube</option>
+</select>
+
+<label>نوع خدمت</label>
+<select id="service" onchange="loadPackages()">
+<option value="">ابتدا شبکه را انتخاب کنید</option>
+</select>
+
+<label>پکیج</label>
+<select id="package" onchange="calc()">
+<option value="">ابتدا خدمت را انتخاب کنید</option>
+</select>
+
+<div class="price">مبلغ: <span id="total">0</span> افغانی</div>
+<div id="details" class="info hidden"></div>
+</div>
+
+<div class="card">
+<h2>💳 پرداخت</h2>
+<div class="payment">
+<b>Binance Pay</b><br>
+Binance ID: <b>1054538037</b><br>
+نام: <b>KCAAfghab</b>
+<hr>
+<b>حساب پی</b><br>
+شماره: <b>0731888844</b><br>
+نام: <b>امینی</b>
+</div>
+<p class="small">پس از پرداخت، شماره/شناسه تراکنش یا توضیح رسید را در فرم زیر وارد کنید.</p><p class="small">📦 سفارش شما مستقیماً در سیستم ثبت می‌شود و نیازی به ارسال در واتساپ نیست.</p>
+</div>
+
+<div class="card">
+<h2>📋 معلومات سفارش</h2>
+<input id="name" placeholder="نام شما">
+<input id="phone" placeholder="شماره تماس">
+<input id="link" placeholder="لینک پیج / ویدیو / پست">
+<input id="payment" placeholder="شناسه تراکنش یا معلومات رسید">
+<textarea id="note" rows="3" placeholder="توضیحات اضافی (اختیاری)"></textarea>
+<button onclick="sendOrder()">📲 ثبت سفارش مستقیم</button>
+</div>
+
+<div class="card">
+<h2>ℹ️ درباره خدمات</h2>
+<p>Social Media Star خدمات شبکه‌های اجتماعی را در بخش‌های فالوور، لایک، بازدید، کمنت، سبسکرایبر و واچ‌تایم ارائه می‌کند. قبل از ثبت سفارش، پکیج و شرایط ضمانت را بررسی کنید.</p>
+</div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+const SUPABASE_URL = "https://cycwnshukkvnlykintzi.supabase.co";
+const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_U2WXYG7_oEXa3Tp8CkMQOQ_JBkbylUO";
+const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY);
+
+const data={
+Instagram:{
+"فالوور تضمینی":[
+["1,000 فالوور — 30 روز ضمانت",220,"ریزش تا 10٪؛ هر زمان افت شود جبران می‌شود."],
+["1,000 فالوور — 90 روز ضمانت",265,"ریزش تا 10٪؛ هر زمان افت شود جبران می‌شود."],
+["1,000 فالوور — 365 روز ضمانت",335,"ریزش تا 10٪؛ هر زمان افت شود جبران می‌شود."],
+["1,000 فالوور — مادام‌العمر",390,"ریزش تا 10٪؛ هر زمان افت شود جبران می‌شود."],
+["2,500 فالوور — مادام‌العمر",950,"ریزش تا 10٪؛ هر زمان افت شود جبران می‌شود."],
+["5,000 فالوور — مادام‌العمر",1700,"ریزش تا 10٪؛ هر زمان افت شود جبران می‌شود."],
+["10,000 فالوور — مادام‌العمر",3200,"ریزش تا 10٪؛ هر زمان افت شود جبران می‌شود."],
+["50,000 فالوور — مادام‌العمر",15000,"ریزش تا 10٪؛ هر زمان افت شود جبران می‌شود."]
+],
+"لایک تضمینی":[
+["1K لایک — 1 پست",25,"ضمانت؛ بدون ریزش"],
+["5K لایک — 1 پست",100,"ضمانت؛ بدون ریزش"],
+["10K لایک — 2 پست",160,"ضمانت؛ بدون ریزش"],
+["50K لایک — 10 پست",600,"ضمانت؛ بدون ریزش"],
+["100K لایک — Multiple Post",1000,"ضمانت؛ بدون ریزش"],
+["1M لایک — Multiple Post",8000,"ضمانت؛ بدون ریزش"]
+],
+"لایک بدون ضمانت":[
+["1K لایک — 1 پست",15,"بدون ضمانت"],
+["5K لایک — 1 پست",70,"بدون ضمانت"],
+["10K لایک — 2 پست",120,"بدون ضمانت"],
+["50K لایک — 10 پست",450,"بدون ضمانت"],
+["100K لایک — Multiple Post",800,"بدون ضمانت"]
+],
+"بازدید":[
+["10K بازدید",25,""],["25K بازدید",50,""],["50K بازدید",90,""],["100K بازدید",160,""],
+["250K بازدید — 5 پست",300,""],["500K بازدید — 10 پست",500,""],["1M بازدید — 20 پست",800,""],["10M بازدید — Multiple Post",4000,""]
+],
+"کمنت":[
+["100 کمنت",60,""],["250 کمنت",120,""],["500 کمنت",200,""],["1K کمنت",350,""],["10K کمنت — Multiple Post",2000,""]
+]},
+TikTok:{
+"فالوور تضمینی":[["1K",500,"ریزش 10٪"],["2.5K",1000,"ریزش 10٪"],["5K",1800,"ریزش 10٪"],["10K",3000,"ریزش 10٪"]],
+"فالوور بدون ضمانت":[["1K",200,"ریزش احتمالی 10٪ تا 50٪"],["2.5K",400,"ریزش احتمالی 10٪ تا 50٪"],["5.5K",800,"ریزش احتمالی 10٪ تا 50٪"],["12K",1500,"ریزش احتمالی 10٪ تا 50٪"]],
+"لایک تضمینی":[["1K",100,"ضمانت دائمی"],["2.5K",200,"ضمانت دائمی"],["5K — 2 پست",400,"ضمانت دائمی"],["12K — 5 پست",800,"ضمانت دائمی"],["25K — 10 پست",1600,"ضمانت دائمی"],["50K — 20 پست",2000,"ضمانت دائمی"],["100K — Multiple Post",3000,"ضمانت دائمی"]],
+"لایک بدون ضمانت":[["1K",70,"بدون ضمانت"],["2.5K",140,"بدون ضمانت"],["5K — 2 پست",260,"بدون ضمانت"],["12K — 5 پست",500,"بدون ضمانت"],["25K — 10 پست",1000,"بدون ضمانت"],["50K — Multiple Post",1800,"بدون ضمانت"]],
+"بازدید":[["1K",12.5,""],["10K",50,""],["50K",150,""],["100K",280,""],["1M — Multiple Post",2600,""],["10M — Multiple Post",24500,""]]},
+Facebook:{
+"فالوور تضمینی":[["1K",80,"ریزش تا 10٪؛ جبران هر بار ریزش"],["2.5K",160,"ریزش تا 10٪؛ جبران هر بار ریزش"],["5K",300,"ریزش تا 10٪؛ جبران هر بار ریزش"],["12K",600,"ریزش تا 10٪؛ جبران هر بار ریزش"],["25K",1200,"ریزش تا 10٪؛ جبران هر بار ریزش"],["50K",2200,"ریزش تا 10٪؛ جبران هر بار ریزش"],["100K",4000,"ریزش تا 10٪؛ جبران هر بار ریزش"]],
+"فالوور بدون ضمانت":[["1K",50,"بدون ضمانت"],["2.5K",100,"بدون ضمانت"],["5K",200,"بدون ضمانت"],["12K",400,"بدون ضمانت"],["25K",700,"بدون ضمانت"],["50K",1200,"بدون ضمانت"],["100K",2200,"بدون ضمانت"]],
+"لایک پست":[["1K قلبک و خنده",25,""],["2.5K قلبک و خنده",50,""],["5K قلبک و خنده",80,""],["12K قلبک و خنده",160,""],["25K قلبک و خنده",320,""],["50K قلبک و خنده",600,""]],
+"بازدید ویدیو":[["1K",10,""],["5K",40,""],["30K",150,""],["100K",300,""],["1M",2500,""]]},
+YouTube:{
+"سبسکرایبر تضمینی":[["1K",1800,"بدون افت؛ ضمانت دائمی"],["2K",3500,"بدون افت؛ ضمانت دائمی"],["5K",6500,"بدون افت؛ ضمانت دائمی"],["10K",12500,"بدون افت؛ ضمانت دائمی"]],
+"سبسکرایبر بدون ضمانت":[["1K",250,"بدون ضمانت"],["2K",500,"بدون ضمانت"],["5K",800,"بدون ضمانت"],["10K",1200,"بدون ضمانت"]],
+"Watch Time تضمینی":[["4,000 ساعت",8500,"ضمانت دائمی؛ تکمیل 24 تا 72 ساعت"]],
+"Watch Time بدون ضمانت":[["4,000 ساعت",4500,"بدون ضمانت؛ روزانه حدود 500 ساعت"]],
+"لایک تضمینی":[["1K",100,"ضمانت دائمی؛ بدون ریزش"],["2K",190,"ضمانت دائمی؛ بدون ریزش"],["5K",900,"ضمانت دائمی؛ بدون ریزش"],["10K",1500,"ضمانت دائمی؛ بدون ریزش"]]}
+};
+
+function loadServices(){
+ const p=document.getElementById("platform"),s=document.getElementById("service"),pkg=document.getElementById("package");
+ s.innerHTML='<option value="">انتخاب خدمت</option>';pkg.innerHTML='<option value="">ابتدا خدمت را انتخاب کنید</option>';
+ if(!data[p.value])return;
+ Object.keys(data[p.value]).forEach(x=>{let o=document.createElement("option");o.value=x;o.textContent=x;s.appendChild(o)});
+ calc();
+}
+function loadPackages(){
+ const p=document.getElementById("platform").value,s=document.getElementById("service").value,pkg=document.getElementById("package");
+ pkg.innerHTML='<option value="">انتخاب پکیج</option>';
+ (data[p]?.[s]||[]).forEach((x,i)=>{let o=document.createElement("option");o.value=i;o.textContent=x[0]+" — "+x[1]+" افغانی";pkg.appendChild(o)});
+ calc();
+}
+function calc(){
+ const p=document.getElementById("platform").value,s=document.getElementById("service").value,i=document.getElementById("package").value;
+ const d=document.getElementById("details");
+ if(p&&s&&i!==""){
+  let x=data[p][s][i];document.getElementById("total").textContent=x[1];
+  d.classList.remove("hidden");d.innerHTML="<b>شرایط:</b> "+(x[2]||"طبق پکیج انتخابی");
+ }else{document.getElementById("total").textContent="0";d.classList.add("hidden")}
+}
+function sendOrder(){
+ const p=document.getElementById("platform").value,s=document.getElementById("service").value,i=document.getElementById("package").value;
+ const name=document.getElementById("name").value.trim(),phone=document.getElementById("phone").value.trim(),link=document.getElementById("link").value.trim(),pay=document.getElementById("payment").value.trim(),note=document.getElementById("note").value.trim();
+ if(!p||!s||i===""){alert("لطفاً شبکه، خدمت و پکیج را انتخاب کنید.");return}
+ if(!name||!phone||!link){alert("لطفاً نام، شماره تماس و لینک را وارد کنید.");return}
+ const x=data[p][s][i];
+ const btn=document.querySelector('button[onclick="sendOrder()"]');
+ btn.disabled=true;
+ btn.textContent="⏳ در حال ثبت سفارش...";
+ supabaseClient.from("orders").insert([{
+   name:name,
+   phone:phone,
+   link:link,
+   platform:p,
+   service:s,
+   package:x[0],
+   amount:x[1],
+   payment_receipt:pay||null,
+   note:note||null
+ }]).select("id").single().then(({data:order,error})=>{
+   btn.disabled=false;
+   btn.textContent="📲 ثبت سفارش";
+   if(error){
+     console.error(error);
+     alert("❌ ثبت سفارش انجام نشد. لطفاً دوباره تلاش کنید.");
+     return;
+   }
+   alert("🙏 تشکر از اعتماد شما!\nسفارش شما با موفقیت ثبت شد.\nشماره سفارش: #"+order.id+"\nوضعیت: در انتظار بررسی");
+   document.getElementById("name").value="";
+   document.getElementById("phone").value="";
+   document.getElementById("link").value="";
+   document.getElementById("payment").value="";
+   document.getElementById("note").value="";
+ }).catch(err=>{
+   console.error(err);
+   btn.disabled=false;
+   btn.textContent="📲 ثبت سفارش";
+   alert("❌ خطا در اتصال به سیستم. لطفاً دوباره تلاش کنید.");
+ });
+}
+</script>
+</body>
+</html>
