@@ -1,414 +1,390 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Social Media Store</title>
 
-  <title>Social Media Store</title>
+<style>
+*{box-sizing:border-box}
 
-  <style>
-    * {
-      box-sizing: border-box;
-    }
+body{
+margin:0;
+font-family:Tahoma,Arial,sans-serif;
+background:#f4f6f8;
+color:#222;
+}
 
-    body {
-      margin: 0;
-      font-family: Tahoma, Arial, sans-serif;
-      background: #f4f6f8;
-      color: #222;
-    }
+header{
+background:linear-gradient(135deg,#111827,#2563eb);
+color:white;
+padding:25px 15px;
+text-align:center;
+}
 
-    header {
-      background: linear-gradient(135deg, #111827, #2563eb);
-      color: white;
-      padding: 25px 15px;
-      text-align: center;
-    }
+header h1{
+margin:0 0 10px;
+font-size:28px;
+}
 
-    header h1 {
-      margin: 0 0 10px;
-      font-size: 28px;
-    }
+header p{
+margin:0;
+font-size:14px;
+}
 
-    header p {
-      margin: 0;
-      font-size: 14px;
-    }
+.container{
+max-width:850px;
+margin:25px auto;
+padding:0 15px;
+}
 
-    .container {
-      max-width: 850px;
-      margin: 25px auto;
-      padding: 0 15px;
-    }
+.card{
+background:white;
+border-radius:15px;
+padding:20px;
+margin-bottom:20px;
+box-shadow:0 4px 15px rgba(0,0,0,.08);
+}
 
-    .card {
-      background: white;
-      border-radius: 15px;
-      padding: 20px;
-      margin-bottom: 20px;
-      box-shadow: 0 4px 15px rgba(0,0,0,.08);
-    }
+.card h2{
+margin-top:0;
+color:#1d4ed8;
+font-size:21px;
+}
 
-    .card h2 {
-      margin-top: 0;
-      color: #1d4ed8;
-      font-size: 21px;
-    }
+label{
+display:block;
+margin:14px 0 7px;
+font-weight:bold;
+}
 
-    label {
-      display: block;
-      margin: 14px 0 7px;
-      font-weight: bold;
-    }
+input,select,textarea{
+width:100%;
+padding:12px;
+border:1px solid #d1d5db;
+border-radius:9px;
+font-size:15px;
+outline:none;
+background:white;
+}
 
-    input,
-    select,
-    textarea {
-      width: 100%;
-      padding: 12px;
-      border: 1px solid #d1d5db;
-      border-radius: 9px;
-      font-size: 15px;
-      outline: none;
-      background: white;
-    }
+textarea{
+min-height:90px;
+resize:vertical;
+}
 
-    input:focus,
-    select:focus,
-    textarea:focus {
-      border-color: #2563eb;
-    }
+.order-number{
+background:#ecfdf5;
+color:#047857;
+border:1px solid #a7f3d0;
+padding:12px;
+border-radius:10px;
+text-align:center;
+font-weight:bold;
+margin-bottom:15px;
+}
 
-    textarea {
-      min-height: 90px;
-      resize: vertical;
-    }
+.price-box{
+margin-top:15px;
+background:#f8fafc;
+border-radius:12px;
+padding:15px;
+border:1px solid #e5e7eb;
+}
 
-    .order-number {
-      background: #ecfdf5;
-      color: #047857;
-      border: 1px solid #a7f3d0;
-      padding: 12px;
-      border-radius: 10px;
-      text-align: center;
-      font-weight: bold;
-      margin-bottom: 15px;
-    }
+.price-title{
+font-weight:bold;
+margin-bottom:12px;
+}
 
-    .price-box {
-      margin-top: 15px;
-      background: #f8fafc;
-      border-radius: 12px;
-      padding: 15px;
-      border: 1px solid #e5e7eb;
-    }
+.price-list{
+display:flex;
+flex-direction:column;
+gap:8px;
+}
 
-    .price-title {
-      font-weight: bold;
-      margin-bottom: 12px;
-      color: #111827;
-    }
+.price-row{
+display:grid;
+grid-template-columns:1fr 100px 1fr;
+column-gap:30px;
+align-items:center;
+background:white;
+padding:10px 12px;
+border-radius:8px;
+border:1px solid #edf0f2;
+}
 
-    .price-list {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
+.price-qty{
+font-weight:bold;
+}
 
-    .price-row {
-      display: grid;
-      grid-template-columns:
-        minmax(130px, 1fr)
-        minmax(90px, 120px)
-        minmax(120px, 1fr);
+.price-afn{
+font-weight:bold;
+color:#16a34a;
+text-align:center;
+}
 
-      column-gap: 32px;
-      align-items: center;
+.price-note{
+color:#64748b;
+font-size:13px;
+}
 
-      background: white;
-      padding: 10px 12px;
-      border-radius: 8px;
-      border: 1px solid #edf0f2;
-    }
+.details{
+margin-top:12px;
+background:#eff6ff;
+padding:12px;
+border-radius:9px;
+line-height:1.8;
+font-size:14px;
+}
 
-    .price-qty {
-      font-weight: bold;
-    }
+.total{
+margin-top:18px;
+background:#111827;
+color:white;
+padding:15px;
+border-radius:10px;
+text-align:center;
+font-size:20px;
+font-weight:bold;
+}
 
-    .price-afn {
-      font-weight: bold;
-      color: #16a34a;
-      text-align: center;
-    }
+.payment{
+background:#fff7ed;
+border:1px solid #fed7aa;
+padding:16px;
+border-radius:10px;
+line-height:2;
+}
 
-    .price-note {
-      color: #64748b;
-      font-size: 13px;
-    }
+.payment b{
+color:#c2410c;
+}
 
-    .details {
-      margin-top: 12px;
-      background: #eff6ff;
-      padding: 12px;
-      border-radius: 9px;
-      line-height: 1.8;
-      font-size: 14px;
-    }
+.small{
+font-size:12px;
+color:#6b7280;
+margin-top:7px;
+}
 
-    .total {
-      margin-top: 18px;
-      background: #111827;
-      color: white;
-      padding: 15px;
-      border-radius: 10px;
-      text-align: center;
-      font-size: 20px;
-      font-weight: bold;
-    }
+button{
+width:100%;
+border:none;
+border-radius:10px;
+padding:15px;
+font-size:17px;
+font-weight:bold;
+cursor:pointer;
+margin-top:15px;
+}
 
-    .payment {
-      background: #fff7ed;
-      border: 1px solid #fed7aa;
-      padding: 16px;
-      border-radius: 10px;
-      line-height: 2;
-      margin-top: 15px;
-    }
+.whatsapp-btn{
+background:#25D366;
+color:white;
+}
 
-    .payment b {
-      color: #c2410c;
-    }
+@media(max-width:600px){
 
-    .small {
-      font-size: 12px;
-      color: #6b7280;
-      margin-top: 7px;
-    }
+.price-row{
+grid-template-columns:1fr 90px;
+column-gap:20px;
+}
 
-    button {
-      width: 100%;
-      border: none;
-      border-radius: 10px;
-      padding: 15px;
-      font-size: 17px;
-      font-weight: bold;
-      cursor: pointer;
-      margin-top: 15px;
-    }
+.price-note{
+grid-column:1/-1;
+}
 
-    .whatsapp-btn {
-      background: #25D366;
-      color: white;
-    }
+header h1{
+font-size:23px;
+}
 
-    .whatsapp-btn:hover {
-      background: #1ebe5d;
-    }
+.card{
+padding:15px;
+}
 
-    @media (max-width: 600px) {
-
-      .price-row {
-        grid-template-columns: 1fr 90px;
-        column-gap: 20px;
-      }
-
-      .price-note {
-        grid-column: 1 / -1;
-        margin-top: 3px;
-      }
-
-      header h1 {
-        font-size: 23px;
-      }
-
-      .card {
-        padding: 15px;
-      }
-    }
-  </style>
+}
+</style>
 </head>
 
 <body>
 
 <header>
-  <h1>⭐ Social Media Store</h1>
-  <p>
-    خدمات فالوور، لایک، بازدید، کمنت و سایر خدمات شبکه‌های اجتماعی
-  </p>
+<h1>⭐ Social Media Store</h1>
+<p>خدمات فالوور، لایک، بازدید، کمنت و سایر خدمات شبکه‌های اجتماعی</p>
 </header>
 
 
 <div class="container">
 
-  <!-- ORDER -->
-  <div class="card">
 
-    <div class="order-number" id="orderNumber">
-      شماره سفارش: در حال دریافت...
-    </div>
+<!-- ثبت سفارش -->
 
-    <h2>🛒 ثبت سفارش</h2>
+<div class="card">
 
-    <label>پلتفرم</label>
+<div class="order-number" id="orderNumber">
+شماره سفارش: در حال دریافت...
+</div>
 
-    <select id="platform" onchange="loadServices()">
-      <option value="">انتخاب پلتفرم</option>
-      <option value="instagram">Instagram</option>
-      <option value="tiktok">TikTok</option>
-      <option value="facebook">Facebook</option>
-      <option value="youtube">YouTube</option>
-    </select>
+<h2>🛒 ثبت سفارش</h2>
 
 
-    <label>نوع خدمات</label>
+<label>پلتفرم</label>
 
-    <select id="service" onchange="loadPackages()">
-      <option value="">
-        ابتدا پلتفرم را انتخاب کنید
-      </option>
-    </select>
+<select id="platform" onchange="loadServices()">
 
+<option value="">انتخاب پلتفرم</option>
 
-    <label>بسته</label>
+<option value="instagram">Instagram</option>
 
-    <select id="package" onchange="calc()">
-      <option value="">
-        ابتدا خدمات را انتخاب کنید
-      </option>
-    </select>
+<option value="tiktok">TikTok</option>
 
+<option value="facebook">Facebook</option>
 
-    <div class="price-box">
+<option value="youtube">YouTube</option>
 
-      <div class="price-title">
-        📋 لیست قیمت
-      </div>
+</select>
 
-      <div id="priceList" class="price-list">
-        لطفاً پلتفرم و خدمات را انتخاب کنید.
-      </div>
 
-    </div>
+<label>نوع خدمات</label>
 
+<select id="service" onchange="loadPackages()">
 
-    <div
-      id="details"
-      class="details"
-      style="display:none;">
-    </div>
+<option value="">ابتدا پلتفرم را انتخاب کنید</option>
 
+</select>
 
-    <div class="total">
 
-      مبلغ قابل پرداخت:
+<label>بسته</label>
 
-      <span id="total">
-        0
-      </span>
+<select id="package" onchange="calc()">
 
-      افغانی
+<option value="">ابتدا خدمات را انتخاب کنید</option>
 
-    </div>
+</select>
 
-  </div>
 
+<div class="price-box">
 
-  <!-- CUSTOMER -->
-  <div class="card">
+<div class="price-title">
+📋 لیست قیمت
+</div>
 
-    <h2>👤 مشخصات سفارش</h2>
+<div id="priceList" class="price-list">
+لطفاً پلتفرم و خدمات را انتخاب کنید.
+</div>
 
+</div>
 
-    <label>نام شما</label>
 
-    <input
-      type="text"
-      id="name"
-      placeholder="نام و نام خانوادگی">
+<div id="details" class="details" style="display:none"></div>
 
 
-    <label>شماره تماس</label>
+<div class="total">
 
-    <input
-      type="tel"
-      id="phone"
-      placeholder="مثلاً 0791234567">
+مبلغ قابل پرداخت:
 
+<span id="total">0</span>
 
-    <label>لینک صفحه / پست / ویدیو</label>
+افغانی
 
-    <input
-      type="url"
-      id="link"
-      placeholder="لینک مورد نظر را وارد کنید">
+</div>
 
+</div>
 
-    <label>شماره یا معلومات پرداخت</label>
 
-    <input
-      type="text"
-      id="payment"
-      placeholder="اختیاری">
 
+<!-- مشخصات مشتری -->
 
-    <label>یادداشت</label>
+<div class="card">
 
-    <textarea
-      id="note"
-      placeholder="اگر توضیحی دارید اینجا بنویسید">
-    </textarea>
+<h2>👤 مشخصات سفارش</h2>
 
-  </div>
 
+<label>نام شما</label>
 
-  <!-- PAYMENT -->
-  <div class="card">
+<input
+type="text"
+id="name"
+placeholder="نام و نام خانوادگی">
 
-    <h2>💳 معلومات پرداخت</h2>
 
-    <div class="payment">
+<label>شماره تماس</label>
 
-      <b>حساب Pay</b><br>
+<input
+type="tel"
+id="phone"
+placeholder="مثلاً 0791234567">
 
-      شماره:
-      <b>0730107272</b>
-      <br>
 
-      نام:
-      <b>Besmillah Amir</b>
+<label>لینک صفحه / پست / ویدیو</label>
 
+<input
+type="url"
+id="link"
+placeholder="لینک مورد نظر را وارد کنید">
 
-      <hr>
 
+<label>شماره یا معلومات پرداخت</label>
 
-      <b>Binance Pay</b><br>
+<input
+type="text"
+id="payment"
+placeholder="اختیاری">
 
-      ID:
-      <b>1054538037</b>
-      <br>
 
-      نام:
-      <b>KCAAfghab</b>
+<label>یادداشت</label>
 
-    </div>
+<textarea
+id="note"
+placeholder="اگر توضیحی دارید اینجا بنویسید"></textarea>
 
+</div>
 
-    <div class="small">
 
-      بعد از پرداخت، سفارش خود را از طریق واتساپ ارسال کنید.
 
-    </div>
+<!-- پرداخت -->
 
+<div class="card">
 
-    <button
-      class="whatsapp-btn"
-      onclick="sendOrder()">
+<h2>💳 معلومات پرداخت</h2>
 
-      📲 ارسال سفارش در واتساپ
+<div class="payment">
 
-    </button>
+<b>حساب Pay</b><br>
 
-  </div>
+شماره:
+<b>0730107272</b><br>
+
+نام:
+<b>Besmillah Amir</b>
+
+<hr>
+
+<b>Binance Pay</b><br>
+
+ID:
+<b>1054538037</b><br>
+
+نام:
+<b>KCAAfghab</b>
+
+</div>
+
+
+<div class="small">
+بعد از پرداخت، سفارش خود را از طریق واتساپ ارسال کنید.
+</div>
+
+
+<button
+class="whatsapp-btn"
+onclick="sendOrder()">
+
+📲 ارسال سفارش در واتساپ
+
+</button>
+
+</div>
 
 </div>
 
@@ -417,1432 +393,740 @@
 <script>
 
 
-/* =========================
-   WHATSAPP
-========================= */
+/* شماره واتساپ */
 
-const whatsappNumber = "93799250544";
+const whatsappNumber="93799250544";
 
 
 
-/* =========================
-   SERVICES
-========================= */
+/* خدمات */
 
-const services = {
+const services={
 
 
-  /* =========================
-     INSTAGRAM
-  ========================= */
+instagram:[
 
-  instagram: [
-
-    {
-      name: "فالوور تضمینی",
-
-      code: "33183",
-
-      description:
-        "فالوور های تضمینی واقعی — افت 5% الی 10% طبیعی",
-
-      packages: [
-
-        {qty:"250", price:100},
-
-        {qty:"500", price:150},
-
-        {qty:"1,000", price:255},
-
-        {qty:"2,000", price:500},
-
-        {qty:"5,000", price:1200},
-
-        {qty:"10,000", price:2300},
-
-        {qty:"50,000", price:11000}
-
-      ]
-    },
-
-
-    {
-      name: "فالوور بدون تضمینی",
-
-      code: "31970",
-
-      description:
-        "هشدار این بسته تضمینی کده نمیشود تشکر",
-
-      packages: [
-
-        {qty:"500", price:100},
-
-        {qty:"1,000", price:180},
-
-        {qty:"2,000", price:350},
-
-        {qty:"5,000", price:700},
-
-        {qty:"10,000", price:1200}
-
-      ]
-    },
-
-
-    {
-      name: "لایک تضمینی",
-
-      code: "9025",
-
-      description:
-        "لایک تضمینی بدون ریزش 100% واقعی",
-
-      packages: [
-
-        {qty:"1,000", price:25},
-
-        {qty:"5,000", price:100},
-
-        {qty:"10,000", price:160, note:"2 posts"},
-
-        {qty:"20,000", price:300, note:"4 posts"},
-
-        {qty:"50,000", price:600, note:"10 posts"},
-
-        {qty:"100,000", price:1000, note:"Multiple Post"},
-
-        {qty:"1,000,000", price:8000, note:"Multiple Post"},
-
-        {qty:"10,000,000", price:65000, note:"Multiple Post"}
-
-      ]
-    },
-
-
-    {
-      name: "بازدید",
-
-      code: "5205",
-
-      description:
-        "بازدید واقعی 100% تضمینی",
-
-      packages: [
-
-        {qty:"10,000", price:25},
-
-        {qty:"25,000", price:50},
-
-        {qty:"50,000", price:90},
-
-        {qty:"100,000", price:160},
-
-        {qty:"500,000", price:500, note:"10 posts"},
-
-        {qty:"1,000,000", price:800, note:"Multiple Post"},
-
-        {qty:"10,000,000", price:5000, note:"Multiple Post"}
-
-      ]
-    },
-
-
-    {
-      name: "کمنت",
-
-      code: "4962",
-
-      description:
-        "کمنت های جهانی 100% واقعی بدون ریزش",
-
-      packages: [
-
-        {qty:"100", price:60},
-
-        {qty:"250", price:120},
-
-        {qty:"500", price:200},
-
-        {qty:"1,000", price:350},
-
-        {qty:"5,000", price:1500},
-
-        {qty:"10,000", price:2500}
-
-      ]
-    }
-
-  ],
-
-
-
-  /* =========================
-     TIKTOK
-  ========================= */
-
-  tiktok: [
-
-    {
-      name: "فالوور تضمینی",
-
-      code: "17299",
-
-      description:
-        "فالور های صد فیصد تضمینی — 5% الی 10% ریزش طبیعی",
-
-      packages: [
-
-        {qty:"100", price:50},
-
-        {qty:"250", price:100},
-
-        {qty:"500", price:190},
-
-        {qty:"1,000", price:350},
-
-        {qty:"2,000", price:660},
-
-        {qty:"5,000", price:1500},
-
-        {qty:"10,000", price:3000}
-
-      ]
-    },
-
-
-    {
-      name: "فالوور بدون ضمانت",
-
-      code: "25167",
-
-      description:
-        "هشدار این سرویس ضمانت نداره",
-
-      packages: [
-
-        {qty:"100", price:35},
-
-        {qty:"250", price:70},
-
-        {qty:"500", price:130},
-
-        {qty:"1,000", price:250},
-
-        {qty:"5,000", price:900},
-
-        {qty:"10,000", price:1600}
-
-      ]
-    },
-
-
-    {
-      name: "لایک + بازدید",
-
-      code: "6617",
-
-      description:
-        "لایک + بازدید 100% تضمینی بدون ریزش",
-
-      packages: [
-
-        {qty:"100", price:30},
-
-        {qty:"250", price:60},
-
-        {qty:"500", price:100},
-
-        {qty:"1,000", price:180},
-
-        {qty:"5,000", price:600, note:"5 posts"},
-
-        {qty:"10,000", price:1000, note:"10 posts"}
-
-      ]
-    },
-
-
-    {
-      name: "لایک بدون تضمین",
-
-      code: "1534",
-
-      description:
-        "هشدار بدون ضمانت",
-
-      packages: [
-
-        {qty:"500", price:50},
-
-        {qty:"1,000", price:100},
-
-        {qty:"2,500", price:200},
-
-        {qty:"5,000", price:300, note:"5 posts"},
-
-        {qty:"10,000", price:500, note:"10 posts"}
-
-      ]
-    },
-
-
-    {
-      name: "بازدید",
-
-      code: "9190",
-
-      description:
-        "بازدید های واقعی 100% تضمینی",
-
-      packages: [
-
-        {qty:"1,000", price:12.5},
-
-        {qty:"10,000", price:50},
-
-        {qty:"50,000", price:150},
-
-        {qty:"100,000", price:250},
-
-        {qty:"500,000", price:1100, note:"Multiple Post"},
-
-        {qty:"1,000,000", price:2000, note:"Multiple Post"},
-
-        {qty:"10,000,000", price:15000, note:"Multiple Post"}
-
-      ]
-    },
-
-
-    {
-      name: "کمنت",
-
-      code: "150",
-
-      description:
-        "تضمینی 100% واقعی",
-
-      packages: [
-
-        {qty:"1,000", price:200},
-
-        {qty:"5,000", price:900},
-
-        {qty:"10,000", price:1600}
-
-      ]
-    }
-
-  ],
-
-
-
-  /* =========================
-     FACEBOOK
-  ========================= */
-
-  facebook: [
-
-    {
-      name: "صفحه / پیج: لایک + فالوور",
-
-      code: "10036",
-
-      description:
-        "تضمینی 100% واقعی — 5% الی 10% ریزش طبیعی",
-
-      packages: [
-
-        {
-          qty:"500",
-          price:100,
-          note:"لایک + فالوور صفحه"
-        },
-
-        {qty:"1,000", price:200},
-
-        {qty:"5,000", price:900},
-
-        {qty:"10,000", price:1600},
-
-        {qty:"50,000", price:6500},
-
-        {qty:"100,000", price:12000}
-
-      ]
-    },
-
-
-    {
-      name: "پروفایل شخصی: فالوور تضمینی",
-
-      code: "15614",
-
-      description:
-        "فالوور تضمینی فیسبوک 100% واقعی دایمی — 5% ریزش طبیعی",
-
-      packages: [
-
-        {qty:"500", price:100},
-
-        {qty:"1,000", price:180},
-
-        {qty:"5,000", price:800},
-
-        {qty:"10,000", price:1500},
-
-        {qty:"20,000", price:2500},
-
-        {qty:"50,000", price:6000},
-
-        {qty:"100,000", price:11000}
-
-      ]
-    },
-
-
-    {
-      name: "پروفایل شخصی: فالوور غیر تضمینی",
-
-      code: "22713",
-
-      description:
-        "هشدار بدون ضمانت",
-
-      packages: [
-
-        {qty:"500", price:70},
-
-        {qty:"1,000", price:140},
-
-        {qty:"5,000", price:550},
-
-        {qty:"10,000", price:1000},
-
-        {qty:"20,000", price:1800}
-
-      ]
-    }
-
-  ],
-
-
-
-  /* =========================
-     YOUTUBE
-  ========================= */
-
-  youtube: [
-
-    {
-      name: "سبسکرایبر تضمینی",
-
-      code: "",
-
-      description:
-        "بدون افت؛ ضمانت دائمی",
-
-      packages: [
-
-        {
-          qty:"1K",
-          price:1800,
-          note:"بدون افت؛ ضمانت دائمی"
-        },
-
-        {qty:"2K", price:3500},
-
-        {qty:"5K", price:6500},
-
-        {qty:"10K", price:12500}
-
-      ]
-    },
-
-
-    {
-      name: "سبسکرایبر بدون ضمانت",
-
-      code: "",
-
-      description:
-        "بدون ضمانت",
-
-      packages: [
-
-        {qty:"1K", price:250},
-
-        {qty:"2K", price:500},
-
-        {qty:"5K", price:800},
-
-        {qty:"10K", price:1200}
-
-      ]
-    },
-
-
-    {
-      name: "Watch Time تضمینی",
-
-      code: "",
-
-      description:
-        "ضمانت دائمی؛ تکمیل 24 تا 72 ساعت",
-
-      packages: [
-
-        {
-          qty:"4,000 ساعت",
-          price:8500,
-          note:"ضمانت دائمی؛ تکمیل 24 تا 72 ساعت"
-        }
-
-      ]
-    },
-
-
-    {
-      name: "Watch Time بدون ضمانت",
-
-      code: "",
-
-      description:
-        "بدون ضمانت؛ روزانه حدود 500 ساعت",
-
-      packages: [
-
-        {
-          qty:"4,000 ساعت",
-          price:4500,
-          note:"بدون ضمانت؛ روزانه حدود 500 ساعت"
-        }
-
-      ]
-    },
-
-
-    {
-      name: "لایک تضمینی",
-
-      code: "",
-
-      description:
-        "ضمانت دائمی؛ بدون ریزش",
-
-      packages: [
-
-        {
-          qty:"1K",
-          price:100,
-          note:"ضمانت دائمی؛ بدون ریزش"
-        },
-
-        {qty:"2K", price:190},
-
-        {qty:"5K", price:900},
-
-        {qty:"10K", price:1500}
-
-      ]
-    }
-
-  ]
-
-};
-
-
-
-/* =========================
-   ORDER NUMBER
-========================= */
-
-function getOrderNumber() {
-
-  const key =
-    "social_media_store_order_number";
-
-  let number =
-    parseInt(
-      localStorage.getItem(key) || "1000",
-      10
-    );
-
-  if (isNaN(number)) {
-    number = 1000;
-  }
-
-  number++;
-
-  localStorage.setItem(
-    key,
-    String(number)
-  );
-
-  return number;
-}
-
-
-const orderNumber =
-  getOrderNumber();
-
-
-document.getElementById(
-  "orderNumber"
-).innerText =
-  "شماره سفارش: #" +
-  orderNumber;
-
-
-
-/* =========================
-   FORMAT NUMBER
-========================= */
-
-function formatNumber(number) {
-
-  return Number(number).toLocaleString(
-    "en-US",
-    {
-      maximumFractionDigits: 2
-    }
-  );
-
-}
-
-
-
-/* =========================
-   ESCAPE HTML
-========================= */
-
-function escapeHTML(str) {
-
-  return String(str)
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;")
-    .replace(/'/g, "&#039;");
-
-}
-
-
-
-/* =========================
-   LOAD SERVICES
-========================= */
-
-function loadServices() {
-
-  const platform =
-    document.getElementById(
-      "platform"
-    ).value;
-
-  const serviceSelect =
-    document.getElementById(
-      "service"
-    );
-
-  const packageSelect =
-    document.getElementById(
-      "package"
-    );
-
-
-  serviceSelect.innerHTML =
-    '<option value="">انتخاب خدمات</option>';
-
-  packageSelect.innerHTML =
-    '<option value="">ابتدا خدمات را انتخاب کنید</option>';
-
-
-  document.getElementById(
-    "priceList"
-  ).innerHTML =
-    "لطفاً خدمات را انتخاب کنید.";
-
-
-  document.getElementById(
-    "details"
-  ).style.display = "none";
-
-
-  document.getElementById(
-    "total"
-  ).innerText = "0";
-
-
-  if (
-    !platform ||
-    !services[platform]
-  ) {
-    return;
-  }
-
-
-  services[platform].forEach(
-    (service, index) => {
-
-      const option =
-        document.createElement(
-          "option"
-        );
-
-      option.value = index;
-
-      option.textContent =
-        service.name +
-        (
-          service.code
-            ? " — کد " +
-              service.code
-            : ""
-        );
-
-      serviceSelect.appendChild(
-        option
-      );
-
-    }
-  );
-
-}
-
-
-
-/* =========================
-   LOAD PACKAGES
-========================= */
-
-function loadPackages() {
-
-  const platform =
-    document.getElementById(
-      "platform"
-    ).value;
-
-  const serviceIndex =
-    document.getElementById(
-      "service"
-    ).value;
-
-  const packageSelect =
-    document.getElementById(
-      "package"
-    );
-
-  const priceList =
-    document.getElementById(
-      "priceList"
-    );
-
-  const details =
-    document.getElementById(
-      "details"
-    );
-
-
-  packageSelect.innerHTML =
-    '<option value="">انتخاب بسته</option>';
-
-  priceList.innerHTML = "";
-
-  details.style.display =
-    "none";
-
-
-  document.getElementById(
-    "total"
-  ).innerText = "0";
-
-
-  if (
-    !platform ||
-    serviceIndex === "" ||
-    !services[platform] ||
-    !services[platform][serviceIndex]
-  ) {
-    return;
-  }
-
-
-  const service =
-    services[platform][serviceIndex];
-
-
-  service.packages.forEach(
-    (pkg, index) => {
-
-      const option =
-        document.createElement(
-          "option"
-        );
-
-      option.value = index;
-
-      option.textContent =
-        pkg.qty +
-        " — " +
-        formatNumber(pkg.price) +
-        " افغانی" +
-        (
-          pkg.note
-            ? " — " +
-              pkg.note
-            : ""
-        );
-
-
-      packageSelect.appendChild(
-        option
-      );
-
-
-      const row =
-        document.createElement(
-          "div"
-        );
-
-      row.className =
-        "price-row";
-
-
-      row.innerHTML = `
-
-        <div class="price-qty">
-          ${escapeHTML(pkg.qty)}
-        </div>
-
-        <div class="price-afn">
-          ${formatNumber(pkg.price)} AFN
-        </div>
-
-        <div class="price-note">
-          ${
-            pkg.note
-              ? escapeHTML(pkg.note)
-              : "—"
-          }
-        </div>
-
-      `;
-
-
-      priceList.appendChild(
-        row
-      );
-
-    }
-  );
-
-
-  details.innerHTML =
-    "<b>توضیحات خدمات:</b><br>" +
-
-    escapeHTML(
-      service.description
-    ) +
-
-    "<br><br>" +
-
-    "<b>کد سرویس:</b> " +
-
-    escapeHTML(
-      service.code ||
-      "ثبت نشده"
-    );
-
-
-  details.style.display =
-    "block";
-
-}
-
-
-
-/* =========================
-   CALCULATE
-========================= */
-
-function calc() {
-
-  const platform =
-    document.getElementById(
-      "platform"
-    ).value;
-
-  const serviceIndex =
-    document.getElementById(
-      "service"
-    ).value;
-
-  const packageIndex =
-    document.getElementById(
-      "package"
-    ).value;
-
-
-  if (
-    !platform ||
-    serviceIndex === "" ||
-    packageIndex === ""
-  ) {
-
-    document.getElementById(
-      "total"
-    ).innerText = "0";
-
-    return;
-  }
-
-
-  const service =
-    services[platform][serviceIndex];
-
-  const pkg =
-    service.packages[packageIndex];
-
-
-  document.getElementById(
-    "total"
-  ).innerText =
-    formatNumber(pkg.price);
-
-}
-
-
-
-/* =========================
-   SEND ORDER TO WHATSAPP
-========================= */
-
-function sendOrder() {
-
-  const platform =
-    document.getElementById(
-      "platform"
-    ).value;
-
-  const serviceIndex =
-    document.getElementById(
-      "service"
-    ).value;
-
-  const packageIndex =
-    document.getElementById(
-      "package"
-    ).value;
-
-
-  const name =
-    document.getElementById(
-      "name"
-    ).value.trim();
-
-
-  const phone =
-    document.getElementById(
-      "phone"
-    ).value.trim();
-
-
-  const li    packages: [
-      ["500 فالوور",70,""],
-      ["1,000 فالوور",140,""],
-      ["5,000 فالوور",550,""],
-      ["10,000 فالوور",1000,""],
-      ["20,000 فالوور",1800,""]
-    ]
-  }
-
+{
+name:"فالوور تضمینی",
+code:"33183",
+description:"فالوور های تضمینی واقعی — افت 5% الی 10% طبیعی",
+packages:[
+{qty:"250",price:100},
+{qty:"500",price:150},
+{qty:"1,000",price:255},
+{qty:"2,000",price:500},
+{qty:"5,000",price:1200},
+{qty:"10,000",price:2300},
+{qty:"50,000",price:11000}
+]
 },
 
+{
+name:"فالوور بدون تضمینی",
+code:"31970",
+description:"هشدار این بسته تضمینی کده نمیشود تشکر",
+packages:[
+{qty:"500",price:100},
+{qty:"1,000",price:180},
+{qty:"2,000",price:350},
+{qty:"5,000",price:700},
+{qty:"10,000",price:1200}
+]
+},
 
-/* =========================
-   YOUTUBE
-   اطلاعات قبلی سایت حفظ شده
-========================= */
+{
+name:"لایک تضمینی",
+code:"9025",
+description:"لایک تضمینی بدون ریزش 100% واقعی",
+packages:[
+{qty:"1,000",price:25},
+{qty:"5,000",price:100},
+{qty:"10,000",price:160,note:"2 posts"},
+{qty:"20,000",price:300,note:"4 posts"},
+{qty:"50,000",price:600,note:"10 posts"},
+{qty:"100,000",price:1000,note:"Multiple Post"},
+{qty:"1,000,000",price:8000,note:"Multiple Post"},
+{qty:"10,000,000",price:65000,note:"Multiple Post"}
+]
+},
 
-YouTube: {
+{
+name:"بازدید",
+code:"5205",
+description:"بازدید واقعی 100% تضمینی",
+packages:[
+{qty:"10,000",price:25},
+{qty:"25,000",price:50},
+{qty:"50,000",price:90},
+{qty:"100,000",price:160},
+{qty:"500,000",price:500,note:"10 posts"},
+{qty:"1,000,000",price:800,note:"Multiple Post"},
+{qty:"10,000,000",price:5000,note:"Multiple Post"}
+]
+},
 
-  "سبسکرایبر تضمینی": {
-    code: "",
-    description: "بدون افت؛ ضمانت دائمی",
-    packages: [
-      ["1K سبسکرایبر",1800,"بدون افت؛ ضمانت دائمی"],
-      ["2K سبسکرایبر",3500,"بدون افت؛ ضمانت دائمی"],
-      ["5K سبسکرایبر",6500,"بدون افت؛ ضمانت دائمی"],
-      ["10K سبسکرایبر",12500,"بدون افت؛ ضمانت دائمی"]
-    ]
-  },
-
-  "سبسکرایبر بدون ضمانت": {
-    code: "",
-    description: "بدون ضمانت",
-    packages: [
-      ["1K سبسکرایبر",250,"بدون ضمانت"],
-      ["2K سبسکرایبر",500,"بدون ضمانت"],
-      ["5K سبسکرایبر",800,"بدون ضمانت"],
-      ["10K سبسکرایبر",1200,"بدون ضمانت"]
-    ]
-  },
-
-  "Watch Time تضمینی": {
-    code: "",
-    description: "ضمانت دائمی؛ تکمیل 24 تا 72 ساعت",
-    packages: [
-      ["4,000 ساعت",8500,"ضمانت دائمی؛ تکمیل 24 تا 72 ساعت"]
-    ]
-  },
-
-  "Watch Time بدون ضمانت": {
-    code: "",
-    description: "بدون ضمانت؛ روزانه حدود 500 ساعت",
-    packages: [
-      ["4,000 ساعت",4500,"بدون ضمانت؛ روزانه حدود 500 ساعت"]
-    ]
-  },
-
-  "لایک تضمینی": {
-    code: "",
-    description: "ضمانت دائمی؛ بدون ریزش",
-    packages: [
-      ["1K لایک",100,"ضمانت دائمی؛ بدون ریزش"],
-      ["2K لایک",190,"ضمانت دائمی؛ بدون ریزش"],
-      ["5K لایک",900,"ضمانت دائمی؛ بدون ریزش"],
-      ["10K لایک",1500,"ضمانت دائمی؛ بدون ریزش"]
-    ]
-  }
-
+{
+name:"کمنت",
+code:"4962",
+description:"کمنت های جهانی 100% واقعی بدون ریزش",
+packages:[
+{qty:"100",price:60},
+{qty:"250",price:120},
+{qty:"500",price:200},
+{qty:"1,000",price:350},
+{qty:"5,000",price:1500},
+{qty:"10,000",price:2500}
+]
 }
+
+],
+
+
+tiktok:[
+
+{
+name:"فالوور تضمینی",
+code:"17299",
+description:"فالور های صد فیصد تضمینی — 5% الی 10% ریزش طبیعی",
+packages:[
+{qty:"100",price:50},
+{qty:"250",price:100},
+{qty:"500",price:190},
+{qty:"1,000",price:350},
+{qty:"2,000",price:660},
+{qty:"5,000",price:1500},
+{qty:"10,000",price:3000}
+]
+},
+
+{
+name:"فالوور بدون ضمانت",
+code:"25167",
+description:"هشدار این سرویس ضمانت نداره",
+packages:[
+{qty:"100",price:35},
+{qty:"250",price:70},
+{qty:"500",price:130},
+{qty:"1,000",price:250},
+{qty:"5,000",price:900},
+{qty:"10,000",price:1600}
+]
+},
+
+{
+name:"لایک + بازدید",
+code:"6617",
+description:"لایک + بازدید 100% تضمینی بدون ریزش",
+packages:[
+{qty:"100",price:30},
+{qty:"250",price:60},
+{qty:"500",price:100},
+{qty:"1,000",price:180},
+{qty:"5,000",price:600,note:"5 posts"},
+{qty:"10,000",price:1000,note:"10 posts"}
+]
+},
+
+{
+name:"لایک بدون تضمین",
+code:"1534",
+description:"هشدار بدون ضمانت",
+packages:[
+{qty:"500",price:50},
+{qty:"1,000",price:100},
+{qty:"2,500",price:200},
+{qty:"5,000",price:300,note:"5 posts"},
+{qty:"10,000",price:500,note:"10 posts"}
+]
+},
+
+{
+name:"بازدید",
+code:"9190",
+description:"بازدید های واقعی 100% تضمینی",
+packages:[
+{qty:"1,000",price:12.5},
+{qty:"10,000",price:50},
+{qty:"50,000",price:150},
+{qty:"100,000",price:250},
+{qty:"500,000",price:1100,note:"Multiple Post"},
+{qty:"1,000,000",price:2000,note:"Multiple Post"},
+{qty:"10,000,000",price:15000,note:"Multiple Post"}
+]
+},
+
+{
+name:"کمنت",
+code:"150",
+description:"تضمینی 100% واقعی",
+packages:[
+{qty:"1,000",price:200},
+{qty:"5,000",price:900},
+{qty:"10,000",price:1600}
+]
+}
+
+],
+
+
+facebook:[
+
+{
+name:"صفحه / پیج: لایک + فالوور",
+code:"10036",
+description:"تضمینی 100% واقعی — 5% الی 10% ریزش طبیعی",
+packages:[
+{qty:"500",price:100,note:"لایک + فالوور صفحه"},
+{qty:"1,000",price:200},
+{qty:"5,000",price:900},
+{qty:"10,000",price:1600},
+{qty:"50,000",price:6500},
+{qty:"100,000",price:12000}
+]
+},
+
+{
+name:"پروفایل شخصی: فالوور تضمینی",
+code:"15614",
+description:"فالوور تضمینی فیسبوک 100% واقعی دایمی — 5% ریزش طبیعی",
+packages:[
+{qty:"500",price:100},
+{qty:"1,000",price:180},
+{qty:"5,000",price:800},
+{qty:"10,000",price:1500},
+{qty:"20,000",price:2500},
+{qty:"50,000",price:6000},
+{qty:"100,000",price:11000}
+]
+},
+
+{
+name:"پروفایل شخصی: فالوور غیر تضمینی",
+code:"22713",
+description:"هشدار بدون ضمانت",
+packages:[
+{qty:"500",price:70},
+{qty:"1,000",price:140},
+{qty:"5,000",price:550},
+{qty:"10,000",price:1000},
+{qty:"20,000",price:1800}
+]
+}
+
+],
+
+
+youtube:[
+
+{
+name:"سبسکرایبر تضمینی",
+code:"",
+description:"بدون افت؛ ضمانت دائمی",
+packages:[
+{qty:"1K",price:1800,note:"بدون افت؛ ضمانت دائمی"},
+{qty:"2K",price:3500},
+{qty:"5K",price:6500},
+{qty:"10K",price:12500}
+]
+},
+
+{
+name:"سبسکرایبر بدون ضمانت",
+code:"",
+description:"بدون ضمانت",
+packages:[
+{qty:"1K",price:250},
+{qty:"2K",price:500},
+{qty:"5K",price:800},
+{qty:"10K",price:1200}
+]
+},
+
+{
+name:"Watch Time تضمینی",
+code:"",
+description:"ضمانت دائمی؛ تکمیل 24 تا 72 ساعت",
+packages:[
+{
+qty:"4,000 ساعت",
+price:8500,
+note:"ضمانت دائمی؛ تکمیل 24 تا 72 ساعت"
+}
+]
+},
+
+{
+name:"Watch Time بدون ضمانت",
+code:"",
+description:"بدون ضمانت؛ روزانه حدود 500 ساعت",
+packages:[
+{
+qty:"4,000 ساعت",
+price:4500,
+note:"بدون ضمانت؛ روزانه حدود 500 ساعت"
+}
+]
+},
+
+{
+name:"لایک تضمینی",
+code:"",
+description:"ضمانت دائمی؛ بدون ریزش",
+packages:[
+{qty:"1K",price:100,note:"ضمانت دائمی؛ بدون ریزش"},
+{qty:"2K",price:190},
+{qty:"5K",price:900},
+{qty:"10K",price:1500}
+]
+}
+
+]
 
 };
 
 
-/* =========================================================
-   بارگذاری خدمات
-========================================================= */
 
-function loadServices(){
-
-  const platform =
-    document.getElementById("platform").value;
-
-  const service =
-    document.getElementById("service");
-
-  const pkg =
-    document.getElementById("package");
-
-  service.innerHTML =
-    '<option value="">انتخاب خدمت</option>';
-
-  pkg.innerHTML =
-    '<option value="">ابتدا خدمت را انتخاب کنید</option>';
-
-  document.getElementById("details").classList.add("hidden");
-  document.getElementById("priceList").classList.add("hidden");
-
-  document.getElementById("total").textContent="0";
-
-  if(!data[platform]) return;
-
-  Object.keys(data[platform]).forEach(function(name){
-
-    const option =
-      document.createElement("option");
-
-    option.value=name;
-    option.textContent=name;
-
-    service.appendChild(option);
-
-  });
-}
-
-
-/* =========================================================
-   بارگذاری پکیج‌ها
-========================================================= */
-
-function loadPackages(){
-
-  const platform =
-    document.getElementById("platform").value;
-
-  const service =
-    document.getElementById("service").value;
-
-  const pkg =
-    document.getElementById("package");
-
-  pkg.innerHTML =
-    '<option value="">انتخاب پکیج</option>';
-
-  const serviceData =
-    data[platform]?.[service];
-
-  if(!serviceData){
-    document.getElementById("details").classList.add("hidden");
-    document.getElementById("priceList").classList.add("hidden");
-    return;
-  }
-
-  /* پکیج‌های داخل Select */
-
-  serviceData.packages.forEach(function(item,index){
-
-    const option =
-      document.createElement("option");
-
-    option.value=index;
-
-    option.textContent =
-      item[0] + " — " +
-      formatNumber(item[1]) +
-      " افغانی";
-
-    pkg.appendChild(option);
-
-  });
-
-
-  /* مشخصات سرویس */
-
-  const details =
-    document.getElementById("details");
-
-  let html="";
-
-  if(serviceData.description){
-    html +=
-      "<b>توضیحات:</b> " +
-      escapeHTML(serviceData.description) +
-      "<br>";
-  }
-
-  if(serviceData.code){
-    html +=
-      '<span class="service-code">کد سرویس: ' +
-      escapeHTML(serviceData.code) +
-      "</span>";
-  }
-
-  details.innerHTML =
-    '<div class="service-box">' +
-    html +
-    "</div>";
-
-  details.classList.remove("hidden");
-
-
-  /* جدول قیمت */
-
-  createPriceList(serviceData);
-
-  calc();
-}
-
-
-/* =========================================================
-   ساخت جدول قیمت
-========================================================= */
-
-function createPriceList(serviceData){
-
-  const box =
-    document.getElementById("priceList");
-
-  let html = `
-    <div class="price-list-title">
-      📋 لیست قیمت این خدمت
-    </div>
-
-    <div class="price-row header">
-      <div>پکیج</div>
-      <div>قیمت</div>
-      <div>توضیحات</div>
-    </div>
-  `;
-
-  serviceData.packages.forEach(function(item){
-
-    html += `
-      <div class="price-row">
-        <div>${escapeHTML(item[0])}</div>
-        <div class="amount">${formatNumber(item[1])} افغانی</div>
-        <div class="note">${escapeHTML(item[2] || "—")}</div>
-      </div>
-    `;
-
-  });
-
-  box.innerHTML=html;
-  box.classList.remove("hidden");
-}
-
-
-/* =========================================================
-   محاسبه قیمت
-========================================================= */
-
-function calc(){
-
-  const platform =
-    document.getElementById("platform").value;
-
-  const service =
-    document.getElementById("service").value;
-
-  const index =
-    document.getElementById("package").value;
-
-  const total =
-    document.getElementById("total");
-
-  if(
-    platform &&
-    service &&
-    index !== "" &&
-    data[platform] &&
-    data[platform][service]
-  ){
-
-    const item =
-      data[platform][service].packages[index];
-
-    total.textContent =
-      formatNumber(item[1]);
-
-  }else{
-
-    total.textContent="0";
-
-  }
-}
-
-
-/* =========================================================
-   شماره سفارش
-========================================================= */
+/* شماره سفارش */
 
 function getOrderNumber(){
 
-  const key =
-    "social_media_store_order_number";
+const key="social_media_store_order_number";
 
-  let number =
-    parseInt(
-      localStorage.getItem(key) || "1000",
-      10
-    );
+let number=parseInt(
+localStorage.getItem(key)||"1000",
+10
+);
 
-  if(isNaN(number)){
-    number=1000;
-  }
-
-  number++;
-
-  localStorage.setItem(
-    key,
-    number.toString()
-  );
-
-  return number;
+if(isNaN(number)){
+number=1000;
 }
 
+number++;
 
-/* =========================================================
-   ارسال سفارش به واتساپ
-========================================================= */
+localStorage.setItem(
+key,
+String(number)
+);
 
-function sendOrder(){
-
-  const platform =
-    document.getElementById("platform").value;
-
-  const service =
-    document.getElementById("service").value;
-
-  const index =
-    document.getElementById("package").value;
-
-  const name =
-    document.getElementById("name").value.trim();
-
-  const phone =
-    document.getElementById("phone").value.trim();
-
-  const link =
-    document.getElementById("link").value.trim();
-
-  const payment =
-    document.getElementById("payment").value.trim();
-
-  const note =
-    document.getElementById("note").value.trim();
-
-
-  /* اعتبارسنجی */
-
-  if(!platform || !service || index===""){
-
-    alert(
-      "لطفاً شبکه، خدمت و پکیج را انتخاب کنید."
-    );
-
-    return;
-  }
-
-
-  if(!name || !phone || !link){
-
-    alert(
-      "لطفاً نام، شماره تماس و لینک را وارد کنید."
-    );
-
-    return;
-  }
-
-
-  const serviceData =
-    data[platform][service];
-
-  const item =
-    serviceData.packages[index];
-
-  const orderNumber =
-    getOrderNumber();
-
-
-  /* نمایش شماره سفارش */
-
-  const orderBox =
-    document.getElementById("orderNumber");
-
-  orderBox.style.display="block";
-
-  orderBox.textContent =
-    "شماره سفارش شما: #" +
-    orderNumber;
-
-
-  /* پیام واتساپ */
-
-  let message =
-`⭐ سفارش جدید - Social Media Store
-
-🔢 شماره سفارش: #${orderNumber}
-
-📱 شبکه: ${platform}
-
-🛒 خدمت: ${service}
-
-🔑 کد سرویس: ${serviceData.code || "ثبت نشده"}
-
-📦 پکیج: ${item[0]}
-
-💰 مبلغ: ${formatNumber(item[1])} افغانی
-
-📌 شرایط:
-${serviceData.description || item[2] || "طبق پکیج انتخابی"}
-
-👤 نام مشتری: ${name}
-
-📞 شماره تماس: ${phone}
-
-🔗 لینک:
-${link}
-
-💳 معلومات پرداخت:
-${payment || "ارسال نشده"}
-
-📝 توضیحات:
-${note || "ندارد"}
-
-━━━━━━━━━━━━━━
-Social Media Store`;
-
-
-  const whatsappNumber =
-    "93799250544";
-
-
-  const whatsappURL =
-    "https://wa.me/" +
-    whatsappNumber +
-    "?text=" +
-    encodeURIComponent(message);
-
-
-  const button =
-    document.getElementById("orderBtn");
-
-  button.disabled=true;
-  button.textContent="⏳ در حال انتقال به واتساپ...";
-
-
-  setTimeout(function(){
-
-    window.open(
-      whatsappURL,
-      "_blank"
-    );
-
-    button.disabled=false;
-    button.textContent=
-      "📲 ثبت سفارش در واتساپ";
-
-  },500);
+return number;
 
 }
 
 
-/* =========================================================
-   توابع کمکی
-========================================================= */
+const orderNumber=getOrderNumber();
+
+
+document.getElementById("orderNumber").innerText=
+"شماره سفارش: #"+orderNumber;
+
+
+
+/* فرمت قیمت */
 
 function formatNumber(number){
 
-  return Number(number).toLocaleString(
-    "en-US",
-    {
-      maximumFractionDigits:2
-    }
-  );
+return Number(number).toLocaleString(
+"en-US",
+{
+maximumFractionDigits:2
+}
+);
 
 }
 
 
-function escapeHTML(value){
 
-  return String(value)
-    .replace(/&/g,"&amp;")
-    .replace(/</g,"&lt;")
-    .replace(/>/g,"&gt;")
-    .replace(/"/g,"&quot;")
-    .replace(/'/g,"&#039;");
+/* خدمات */
+
+function loadServices(){
+
+const platform=
+document.getElementById("platform").value;
+
+const serviceSelect=
+document.getElementById("service");
+
+const packageSelect=
+document.getElementById("package");
+
+
+serviceSelect.innerHTML=
+'<option value="">انتخاب خدمات</option>';
+
+packageSelect.innerHTML=
+'<option value="">ابتدا خدمات را انتخاب کنید</option>';
+
+document.getElementById("priceList").innerHTML=
+"لطفاً خدمات را انتخاب کنید.";
+
+document.getElementById("details").style.display="none";
+
+document.getElementById("total").innerText="0";
+
+
+if(!platform||!services[platform]){
+return;
+}
+
+
+services[platform].forEach(
+(service,index)=>{
+
+const option=
+document.createElement("option");
+
+option.value=index;
+
+option.textContent=
+service.name+
+(
+service.code
+?" — کد "+service.code
+:""
+);
+
+serviceSelect.appendChild(option);
+
+}
+);
+
+}
+
+
+
+/* بسته ها */
+
+function loadPackages(){
+
+const platform=
+document.getElementById("platform").value;
+
+const serviceIndex=
+document.getElementById("service").value;
+
+const packageSelect=
+document.getElementById("package");
+
+const priceList=
+document.getElementById("priceList");
+
+const details=
+document.getElementById("details");
+
+
+packageSelect.innerHTML=
+'<option value="">انتخاب بسته</option>';
+
+priceList.innerHTML="";
+
+details.style.display="none";
+
+document.getElementById("total").innerText="0";
+
+
+if(
+!platform||
+serviceIndex===""||
+!services[platform]||
+!services[platform][serviceIndex]
+){
+return;
+}
+
+
+const service=
+services[platform][serviceIndex];
+
+
+service.packages.forEach(
+(pkg,index)=>{
+
+const option=
+document.createElement("option");
+
+option.value=index;
+
+option.textContent=
+pkg.qty+
+" — "+
+formatNumber(pkg.price)+
+" افغانی"+
+(
+pkg.note
+?" — "+pkg.note
+:""
+);
+
+packageSelect.appendChild(option);
+
+
+const row=
+document.createElement("div");
+
+row.className="price-row";
+
+
+row.innerHTML=
+
+'<div class="price-qty">'+
+pkg.qty+
+'</div>'+
+
+'<div class="price-afn">'+
+formatNumber(pkg.price)+
+' AFN</div>'+
+
+'<div class="price-note">'+
+(pkg.note||"—")+
+'</div>';
+
+
+priceList.appendChild(row);
+
+}
+);
+
+
+details.innerHTML=
+"<b>توضیحات خدمات:</b><br>"+
+service.description+
+"<br><br>"+
+"<b>کد سرویس:</b> "+
+(service.code||"ثبت نشده");
+
+
+details.style.display="block";
+
+}
+
+
+
+/* محاسبه */
+
+function calc(){
+
+const platform=
+document.getElementById("platform").value;
+
+const serviceIndex=
+document.getElementById("service").value;
+
+const packageIndex=
+document.getElementById("package").value;
+
+
+if(
+!platform||
+serviceIndex===""||
+packageIndex===""
+){
+
+document.getElementById("total").innerText="0";
+
+return;
+}
+
+
+const service=
+services[platform][serviceIndex];
+
+const pkg=
+service.packages[packageIndex];
+
+
+document.getElementById("total").innerText=
+formatNumber(pkg.price);
+
+}
+
+
+
+/* ارسال واتساپ */
+
+function sendOrder(){
+
+const platform=
+document.getElementById("platform").value;
+
+const serviceIndex=
+document.getElementById("service").value;
+
+const packageIndex=
+document.getElementById("package").value;
+
+
+const name=
+document.getElementById("name").value.trim();
+
+const phone=
+document.getElementById("phone").value.trim();
+
+const link=
+document.getElementById("link").value.trim();
+
+const payment=
+document.getElementById("payment").value.trim();
+
+const note=
+document.getElementById("note").value.trim();
+
+
+if(!platform){
+
+alert("لطفاً پلتفرم را انتخاب کنید.");
+
+return;
+}
+
+
+if(serviceIndex===""){
+
+alert("لطفاً نوع خدمات را انتخاب کنید.");
+
+return;
+}
+
+
+if(packageIndex===""){
+
+alert("لطفاً بسته را انتخاب کنید.");
+
+return;
+}
+
+
+if(!name){
+
+alert("لطفاً نام خود را وارد کنید.");
+
+return;
+}
+
+
+if(!phone){
+
+alert("لطفاً شماره تماس را وارد کنید.");
+
+return;
+}
+
+
+if(!link){
+
+alert("لطفاً لینک صفحه، پست یا ویدیو را وارد کنید.");
+
+return;
+}
+
+
+const service=
+services[platform][serviceIndex];
+
+const pkg=
+service.packages[packageIndex];
+
+
+const platformNames={
+
+instagram:"Instagram",
+
+tiktok:"TikTok",
+
+facebook:"Facebook",
+
+youtube:"YouTube"
+
+};
+
+
+const platformName=
+platformNames[platform];
+
+
+let text="";
+
+
+text+="⭐ Social Media Store\n";
+
+text+="━━━━━━━━━━━━━━\n";
+
+text+="🧾 شماره سفارش: #"+orderNumber+"\n";
+
+text+="━━━━━━━━━━━━━━\n";
+
+text+="📱 پلتفرم: "+platformName+"\n";
+
+text+="🛠 خدمات: "+service.name+"\n";
+
+text+="🔢 کد سرویس: "+
+(service.code||"ثبت نشده")+"\n";
+
+text+="📦 بسته: "+pkg.qty+"\n";
+
+text+="💰 مبلغ: "+
+formatNumber(pkg.price)+
+" افغانی\n";
+
+
+if(pkg.note){
+
+text+="📝 توضیح بسته: "+
+pkg.note+"\n";
+
+}
+
+
+text+="━━━━━━━━━━━━━━\n";
+
+text+="👤 نام: "+name+"\n";
+
+text+="📞 شماره تماس: "+phone+"\n";
+
+text+="🔗 لینک: "+link+"\n";
+
+
+if(payment){
+
+text+="💳 معلومات پرداخت: "+
+payment+"\n";
+
+}
+
+
+if(note){
+
+text+="📌 یادداشت: "+
+note+"\n";
+
+}
+
+
+text+="━━━━━━━━━━━━━━\n";
+
+text+="💳 حساب Pay: 0730107272\n";
+
+text+="👤 Besmillah Amir\n";
+
+text+="💎 Binance Pay ID: 1054538037\n";
+
+text+="👤 KCAAfghab";
+
+
+const whatsappURL=
+"https://wa.me/"+
+whatsappNumber+
+"?text="+
+encodeURIComponent(text);
+
+
+window.open(
+whatsappURL,
+"_blank"
+);
 
 }
 
 </script>
 
 </body>
-</html>value="";
-   document.getElementById("phone").value="";
-   document.getElementById("link").value="";
-   document.getElementById("payment").value="";
-   document.getElementById("note").value="";
- }).catch(err=>{
-   console.error(err);
-   btn.disabled=false;
-   btn.textContent="📲 ثبت سفارش";
-   alert("❌ خطا در اتصال به سیستم. لطفاً دوباره تلاش کنید.");
- });
-}
-</script>
-</body>
-</html>
+  </html>
